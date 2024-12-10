@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pelayanan Fotografer Wisuda</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+    font-family: 'Poppins', sans-serif;
+    background-image: url('images/Black\ and\ White\ Aesthetic\ Elegant\ Minimalist\ Yoga\ Studio\ Logo_20241113_130538_0000.png'); /* Ganti dengan URL gambar Anda */
+    background-size: cover; /* Untuk menutupi seluruh area */
+    background-position: center; /* Menempatkan gambar di tengah */
+    background-repeat: no-repeat; /* Tidak mengulangi gambar */
+    color: #ffffff;
+    margin: 0;
+    padding: 20px;
+    animation: fadeIn 1s;
+}
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .container {
+            background-color: #e6e4e4;
+            padding: 20px;
+            opacity: 50px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            max-width: 500px;
+            margin: auto;
+            transform: translateY(-10px);
+            animation: slideIn 0.5s forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        h2 {
+            text-align: center;
+            color: #fc0000;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .logo {
+            display: block;
+            margin: 0 auto 20px;
+            max-width: 100px;
+            animation: logoBounce 0.8s ease;
+        }
+
+        @keyframes logoBounce {
+            0% {
+                transform: translateY(-20px);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        input,
+        select {
+            width: 95%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 4px;
+            background-color: #333333;
+            color: #ffffff;
+            transition: background-color 0.3s, border 0.3s, transform 0.2s;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+        }
+
+        input:focus,
+        select:focus {
+            background-color: #444444;
+            border: 1px solid #fc0000;
+            outline: none;
+            transform: scale(1.02);
+        }
+
+        button {
+            background-color: #fc0000;
+            color: #000;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        button:hover {
+            background-color: #2aec03;
+            transform: scale(1.05);
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+    <div class="container">
+        <img src="images/Black and White Aesthetic Elegant Minimalist Yoga Studio Logo_20241113_130538_0000.png" alt="Logo Fotografi" class="logo"> <!-- Logo -->
+        <h2>Form Pemesanan Fotografer Wisuda</h2>
+        <form id="orderForm">
+            <input type="text" placeholder="Nama Lengkap" id="fullName" required>
+            <input type="text" placeholder="Nama Instagram" id="instagram" required>
+            <input type="date" id="photographyDate" required>
+            <input type="text" placeholder="Lokasi Pemotretan" id="location" required>
+            <select id="package" required>
+                <option value="">Pilih Paket Pemotretan</option>
+                <option value="Paket A">Paket A</option>
+                <option value="Paket B">Paket B</option>
+                <option value="Paket C">Paket C</option>
+            </select>
+            <input type="number" placeholder="DP Awal (Rp)" id="deposit" required>
+            
+            <!-- Opsi Metode Pembayaran -->
+            <select id="paymentMethod" required onchange="toggleBankSelect()">
+                <option value="">Pilih Metode Pembayaran</option>
+                <option value="Transfer Bank">Transfer Bank</option>
+                <option value="Tunai">Tunai</option>
+            </select>
+    
+            <!-- Opsi Nama Bank -->
+            <select id="bankName" required style="display: none;">
+                <option value="">Pilih Nama Bank</option>
+                <option value="Bank Mandiri">Bank Mandiri</option>
+                <option value="BNI">BNI</option>
+                <option value="BCA">BCA</option>
+                <option value="BRI">BRI</option>
+                <option value="CIMB Niaga">CIMB Niaga</option>
+            </select>
+    
+            <button type="button" onclick="sendWhatsApp()">Kirim ke WhatsApp</button>
+        </form>
+    </div>
+    
+    <script>
+        function toggleBankSelect() {
+            const paymentMethod = document.getElementById('paymentMethod').value;
+            const bankName = document.getElementById('bankName');
+    
+            // Tampilkan dropdown nama bank hanya jika metode pembayaran adalah Transfer Bank
+            if (paymentMethod === "Transfer Bank") {
+                bankName.style.display = "block";
+            } else {
+                bankName.style.display = "none";
+            }
+        }
+    
+        function sendWhatsApp() {
+            const fullName = document.getElementById('fullName').value;
+            const instagram = document.getElementById('instagram').value;
+            const photographyDate = document.getElementById('photographyDate').value;
+            const location = document.getElementById('location').value;
+            const package = document.getElementById('package').value;
+            const deposit = document.getElementById('deposit').value;
+            const paymentMethod = document.getElementById('paymentMethod').value;
+            const bankName = document.getElementById('bankName').value;
+    
+            const message = `*Pemesanan Fotografer Wisuda*\n\n` +
+                            `Nama Lengkap: ${fullName}\n` +
+                            `Nama Instagram: ${instagram}\n` +
+                            `Tanggal Pemotretan: ${photographyDate}\n` +
+                            `Lokasi Pemotretan: ${location}\n` +
+                            `Paket Pemotretan: ${package}\n` +
+                            `DP Awal: Rp ${deposit}\n` +
+                            `Metode Pembayaran: ${paymentMethod}` + 
+                            (paymentMethod === "Transfer Bank" ? `\nNama Bank: ${bankName}` : '');
+    
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=62895324122542&text=${encodeURIComponent(message)}`;
+            
+            // Membuka URL WhatsApp di tab baru
+            window.open(whatsappUrl, '_blank');
+    
+            // Reset seluruh form
+            document.getElementById('orderForm').reset();
+            document.getElementById('bankName').style.display = "none";  // Menyembunyikan kembali nama bank setelah reset
+        }
+    </script>
+
+</body>
+</html>
